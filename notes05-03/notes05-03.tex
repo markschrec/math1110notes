@@ -1,0 +1,100 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleleft}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 5.3: Venn Diagrams and counting}
+
+Venn diagrams are very useful for finding the number of elements in various sets. We do this by looking at the number of elements in each \defn{Basic Region} of the Venn diagram.
+
+\begin{venndiagram2sets}[labelNotAB=I,labelOnlyA=II,labelAB=III,labelOnlyB=IV]
+\end{venndiagram2sets}
+\begin{venndiagram3sets}[labelNotABC=VIII,labelOnlyA=II,labelOnlyB=III,labelOnlyC=IV,labelOnlyAB=V,labelOnlyBC=VI,labelOnlyAC=VII,labelABC=I]
+\end{venndiagram3sets}
+
+If we know the number of elements in ceach of these basic regions, we can find the number of elements in any region by simply adding.\\
+
+Example: A survey of 126 first year students at UVA found that 32 will take a math class but not a history class, 28 will take a history class but not a math class, 58 will take a histor and a math class, while 8 will take neither.\\
+
+How many students will take a math class?\\
+How many will take a math or history class?\\
+How many will not take a history class?\\
+
+We will answer these questions by drawing the Venn diagram and labeling its basic regions. Let $M$ be the set of students taking a math class and $H$ be the set of students taking a history class.\\
+\begin{venndiagram2sets}[labelNotAB=8,labelA=$M$,labelOnlyA=32,labelB=$H$,labelOnlyB=28,labelAB=58]
+\end{venndiagram2sets}\\
+To find how many students will take a math class we simply add up all of the regions that lie in $M$ this gives the number of students to take a math class is $n(M)=32+58=90.$
+
+Similarly $n(M\cup H)=32+58+28=118.$ 
+
+To find how many students will not take a history class, we simply add up all of the regions that don't lie in $H.$ So the number of students who will not take a history course is $n(H')=32+8=40.$
+
+In the previous example, what do you notice about all of the numbers? When we do inclusion-exclusion, sometimes you have to subtract a number for the intersection. Why doesn't that happen here?\\
+
+A useful fact: Using inclusion-exclusion, what is $n(A\cup A')?$ What is another way to write $A\cup A'?$ Putting these together we get the useful formula $n(U)=n(A)+n(A')$ for any set $A.$ This can make computations a little bit easier and will also come up when we do probability again.
+
+Let's do one more example with 3 sets. An examination of the fortune 500 companies revealed this about their advertising practices:
+\begin{itemize}
+	\item 402 of the companies advertized with Television
+	\item 364 of the companies advertized with Facebook
+	\item 220 of the companies advertized with Radio
+	\item 192 of the companies advertized with TV and Facebook
+	\item 132 of the companies advertized with Facebook and Radio
+	\item 203 of the companies advertized with TV and Radio
+	\item 120 of the companies advertized with all 3
+\end{itemize}
+
+Answer the following questions:
+\begin{enumerate}
+	\item How many companies did not advertize with any of the 3? (21)
+	\item How many companies advertized with just Radio? (5)
+	\item How many companies advertized with Facebook and TV but not Radio? (172)
+	\item How many companies advertized with exactly one of the 3? (92)
+	\item How many companies did not advertize with all 3? (380)
+\end{enumerate}
+
+We start by drawing the Venn diagram with the basic regions. Work through the process with them working from the inside out. Don't forget to include the total complement.
+
+This gives us the following Venn diagram\\
+\begin{venndiagram3sets}[radius=2cm,overlap=1cm,labelA=TV,labelB=Facebook,labelC=Radio,labelOnlyA=27,labelOnlyB=60,labelOnlyC=5,labelOnlyAB=172,labelOnlyBC=12,labelOnlyAC=83,labelABC=120,labelNotABC=21]
+\end{venndiagram3sets}
+
+We can now read off the answers from the diagram (answers written with quesitons above in parentheses.)
+\end{document}

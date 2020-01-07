@@ -1,0 +1,147 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+\newcommand{\var}{\ensuremath{\mathrm{Var}}}
+
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 11.1/11.2 Logic and Truth Tables}
+
+We are going to spend a few days talking about logic. Logic is a way of formalizing our ideas about truth, falsehood, and logical arguments. We are going to start out with a lot of definitions. 
+
+A \defn{statement} is a declarative sentence which is either true or false. Examples and non-examples:
+\begin{itemize}
+	\item This course is the best
+	\item I enjoy teaching this course
+	\item It takes 3 hours to get home
+	\item It is green (this is not a declarative sentence)
+	\item Is this boring?
+\end{itemize}
+
+The \defn{truth value} of a statement is either true or false We can combine logical statements as we do in english, the 4 main connectors we will use will be \defn{or}, \defn{and}, \defn{not}, and \defn{if...then...}. These phrases are called connectives. A \defn{compound} statment is a statement is a statment formed by other statements with connectives. A \defn{simple} statement is one that is not compound. Examples:
+\begin{itemize}
+	\item The wall is brown (simple)
+	\item You will get an A in the class or you will get a B (compound)
+	\item If you study, then you will pass (compound)
+	\item I will not answer emails after midnight (could be either, but helpful to think about not)
+	\item I have office hours on Friday and I have office hours on Thursday.
+\end{itemize}
+
+Now we want to work a little bit more symbolically. We will denote simple statements by lowercase letters like $p,q,r.$ Then we also have symbols for our connections
+\begin{enumerate}
+	\item \defn{Conjunction}: the symbol $\wedge$ represents and
+	\item \defn{Disjunction}: the symbol $\vee$ represents or
+	\item \defn{Negation}: the symbol $\sim$ represents not
+	\item \defn{Implication}: the symbol $\to$ represents if...then...
+\end{enumerate}
+
+Examples: Suppose $p,q,r$ are simple statements. Write the following statements in english
+\begin{enumerate}
+	\item $p\wedge q$
+	\item $\sim q \vee p$
+	\item $r\to p\vee q$
+	\item $p \wedge \sim q \to r$
+\end{enumerate}
+
+This gives the following definition: a \defn{Statement Form} is an expression formed from simple statements and connectives accoring to the following rules:
+\begin{enumerate}
+	\item a simple statement is a statement form
+	\item if $P$ is a statement form then $\sim P$ is a statement form
+	\item if $P,Q$ are statement forms then $P\vee Q,$ $P\wedge Q$ and $P\to Q$ are statement forms
+\end{enumerate}
+In other words a statment form is a symbolic representation of a compound statement. We will usually denote these by capital letters.
+
+How do we know when statement forms are true or false. We look at something called their \defn{truth table}. It is a table summarizing the truth value of a statement form for every possiblilty of inputs.
+
+Let's look at truth tables for the basic connectors:
+\[
+	\begin{array}{c|c}
+		p&\sim p\\\hline
+		T&F\\
+		F&T\\
+	\end{array}\qquad
+	\begin{array}{c|c|c}
+		p&q&p\vee q\\\hline
+		T&T&T\\
+		T&F&T\\
+		F&T&T\\
+		F&F&F
+	\end{array}\qquad
+	\begin{array}{c|c|c}
+		p&q&p\wedge q\\\hline
+		T&T&T\\
+		T&F&F\\
+		F&T&F\\
+		F&F&F
+	\end{array}\qquad
+	\begin{array}{c|c|c}
+		p&q&p\to q\\\hline
+		T&T&T\\
+		T&F&F\\
+		F&T&T\\
+		F&F&T
+	\end{array}\qquad
+\]
+
+Let's talk for a little bit about implicicaiton. The second two rows may seem strange, but let's put this in the context of a real world example. Consider the following statement: If you study, then you will do well on the next quiz. What if you don't study but still do well? Does this mean I was wrong? Does it mean the statement was false? No, in that case the statement has no bearing on outcome.  So if $p$ is false then $p\to q$ will always be true regardless of $q.$ $p$ is called the hypothesis and $q$ is called the conclusion.
+
+We have two more definitions. A \defn{tautology} is a statement form which is always true. A \defn{contradiction} is a statement form which is always false. For each of the following statement forms, decide if it is a tautology, contradiction, or neither by constructing the truth table.
+\begin{itemize}
+	\item $p\vee \sim p$
+	\item $p\wedge \sim p$
+	\item $(p\vee q)\to (p\wedge q)$
+	\item $(p\wedge q)\to (p\vee q)$
+	\item $(p\wedge q)\wedge(\sim p\to q)$
+\end{itemize}
+
+Truth tables also give us the idea of \defn{logical equivalence}. Two statement forms are logically equivalent if they have the same truth tables.Example: Show that $\sim(P\vee Q)$ is logically eqivialent to $\sim P\wedge \sim Q.$ Also prove that $\sim (P\wedge Q)$ is logically eqivalent to  $\sim P\vee \sim Q.$ These are called demorgan's laws.
+
+There are two more very common operations which can be build out of basic operations.\\
+
+Find the truth table for $(p\vee q)\wedge \sim (p\wedge q).$ This operation is called exclusive or or xor and it is denoted $p\oplus q.$ It is true when exactly one of $p$ or $q$ is true.
+
+Another one will be very important when we discuss proofs and logical arguments. Find the truth table for $(p\to q)\wedge (q\to p).$ This is called a biconditional and it is more ofter refered to as ``if and only if''. It is written as $\leftrightarrow$ and it is true when $p$ and $q$ have the same value.
+
+Consider the statement $p\to q.$ Then there are 3 very closely related statements. The \defn{converse} is $q\to p.$ The \defn{inverse} is $\sim p\to \sim q.$ The \defn{contrapositive} is the statement $\sim q\to \sim p.$
+
+Show that a statement and its contrapositive are logically equivalent. Show that a statement's inverse and converse are logically equivalent. Show that a statement and it's converse are not logically equivalent.
+
+
+\end{document}

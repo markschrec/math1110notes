@@ -1,0 +1,91 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 7.3: Binomial Distribution}
+
+A binomial trial is an experiment with 2 possible outcomes. This is the simplest (non-trivial) experiment. We will typically denote the two outcomes as ``success'' and ``failure''. Some examples include whether a treatment is effective for a condition, testing a product as defective or not, or winning a game.
+
+When considering binomial trials we will denote the probability of succes as $p$ and the probability of failure as $q.$ Since this is a probability experiment we will have $0\le p\le 1$ and $p+q=1.$ In most practical examples $p$ will not be 0 or 1 because these are uninteresting experiments.
+
+Now consider the following experiment. We take some binomial trial and repeat it $n$ times. We assume each binomial trial is independent so the probabilities do not affect on another. The main problem we have to answer is what is the probability of a certain number of successes.\\
+
+Now let's be a little more formal. Suppose we have $n$ independent binomial trials, each of which has a probability of success of $p.$ Let $X$ denote the number of sucesses in the $n$ trials. What is the probability distribution of $X?$
+
+How do we find $P(X=k)?$ What does a typical sequences of successes and failures look like. What is the probability of a sequence with exactly $k$ successes? How many sequences have $k$ successes. This gives us the following result
+\[
+	P(X=k)=\binom{n}{k}p^kq^{n-k}
+\]
+
+Example: Suppose we roll a fair standard die 5 times and we want to count the number of 6's we get. What is the probability we get 3 6's. 
+
+Before we do more examples, lets verify this is a probability assignment.
+What is the sum $P(X=0)+\cdots P(X=n)?$ We get
+\[
+	\binom{n}{0}p^0q^n+\binom{n}{1}p^1q^{n-1}+\cdots +\binom{n}{n-1}p^{n-1}q^1+\binom{n}{n}p^nq^0=(p+q)^n=1
+\]
+so this does work.
+
+Example: a lightbulb manufacturer sends bulbs in packs of 20 to stores. If production tolerances mean that $1/50$ of all bulbs are defective, what is the probability a pack up bulbs has more than 1 defective bulb in it?
+
+What happens when $p=q?$ Then both must be $1/2$ and $p^kq^{n-k}=(1/2)^n.$ This puts us back in the coin flip model where all outcomes are equally likely. 
+
+Some other notation:\\
+If $X$ is a random variable with probability distribution which is a binomial distribution, we can write $X\sim \mathrm{Binom}(n,p)$ and say $X$ is distributed binomially with parameters $n$ and $p.$ For example, suppose you play your friend in a game but they win $3/5$ of the time. You decide to play 5 times. If $X$ is the number of times you win then we can say $X\sim \mathrm{Binom}(5,2/5).$
+	
+Concept questions:\\
+\begin{itemize}
+	\item What does a binomial distribution look like if $n=1$
+	\item When $n$ becomes very large, what happends to $P(X=k).$
+	\item If $X\sim \mathrm{Binom}(n,p)$ and $Y\sim \mathrm{Binom}{m,p}$ where $X$ and $Y$ are independent, describe the distribution for $X+Y.$
+\end{itemize}
+
+A tennis match consists of at most 5 sets, where the first player to 3 sets wins. If Nadal and Djokovic play then we estimate there is probability $11/20$ that Nadal will win a set. Assume the sets are independent.
+\begin{enumerate}
+	\item Find the probability Nadal wins in 5 sets.
+	\item Find the probability Nadal wins in 4 sets.
+	\item Find the probability Djokovic wins.
+	\item Calculate the previous probability in another way (pretend to play all sets, Djokovic must win 3 or more)
+\end{enumerate}
+
+Question: What is the ``average'' outcome of one of these experiments. How do we define this?
+\end{document}

@@ -1,0 +1,108 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 5.7: The binomial Theorem}
+In this section we examine some more properties of combinations and state the famous binomial theorem.
+
+Recall that for combinations we use the notation $\binom{n}{r}=\frac{n!}{r!(n-r)!}$ and remember what it counts.
+
+Here are some properties of binomial coeficients.
+\begin{enumerate}
+	\item What is $\binom{0}{0}?$
+	\item What is $\binom{n}{0}?$
+	\item Does this match with the idea of subsets? (Yes, there is one subset of size 0, namely the empty set)
+\end{enumerate}
+
+Usually the best way of computing these is by canceling out with the bigger factorial and working from there:
+\[
+	\binom{6}{2}=\frac{6!}{4!2!}=\frac{6\cdot 5}{2}=15 \quad \binom{10}{3}=\frac{10!}{7!3!}=\frac{10\cdot 9\cdot 8}{6}=120 \quad \binom{100}{98}=\frac{100!}{98!2!}=\frac{100\cdot 99}{2}=4950
+\]
+
+Now consider the following questions:
+\begin{enumerate}
+	\item If we flip a coin $n$ times, how many outcomes have eactly $r$ heads?
+	\item If we flip a coin $n$ times, how many outcomes have exactly $n-r$ tails?
+	\item What can we say about the previous two numbers?
+	\item If we have a set of $n$ people, how many ways can we include $r$ into a group?
+	\item If we have a set of $n$ people, how many ways can we exclude $n-r$ out of a group?
+	\item What can we say about the previous two numbers?
+	\item What can we conclude in general about combinations?
+\end{enumerate}
+
+Subsets of a set:\\
+Suppose a set $A$ has $n$ elements. How many subsets does $A$ have? Lets make a subset in the following way:\\
+For each element of $A$ we have a choice, either that element is in the subset or it isn't. How many different choices are there? ($n(A)$) So by the multiplication principle how many subsets are there? There should be $2^{n(A)}$ subsets of $A.$\\
+
+Now let's count in a different way. How many subsets of size 0 are there? How many of size 1? Size 2? Keep going? How can we combine all of these numbers to get all of the subsets?
+
+This gives the following theorem
+\[
+	2^n=\binom{n}{0}+\binom{n}{1}+\binom{n}{2}+\cdots + \binom{n}{n-1}+\binom{n}{n}
+\]
+
+Now we want to consider the famous binomial theorem which gives a formula for $(x+y)^n.$\\
+Expand the following binomials without combining like terms and without rearanging the order
+\begin{enumerate}
+	\item Example $(x+y)^2=xx+xy+yx+yy$
+	\item $(x+y)^3=xxx+xxy+xyx+xyy+yxx+yxy+yyx+yyy$
+	\item $(x+y)^4$
+\end{enumerate}
+
+So when we expand $(x+y)^n$ we are making all possible strings of $n$ letters where each letter is either an $x$ or a $y.$ What are the possibilites for how many x's can occur? If we know the number of x's, what can we say about the number of y's? How many strings have exactly 0 y's? How about 1 y. 2 y's.
+
+Use commutativity to group like terms and figure out how many of each like term there are. The following is known as the binomial theorem.
+\[
+	(x+y)^n=\binom{n}{0}x^n+\binom{n}{1}x^{n-1}y+\binom{n}{2}x^{n-2}y^2+\cdots+\binom{n}{n-2}x^2y^{n-2}+\binom{n}{n-1} xy^{n-1}+\binom{n}{n}y^n=\sum_{k=0}^n \binom{n}{k}x^{n-k}y^k
+\]
+For this reason the numbers $\binom{n}{r}$ are called binomial coefficients.
+
+Examples: Common formulas that you may know are special cases of this
+\[
+	(x+y)^2=x^2+2xy+y^2\qquad (x+y)^3=x^3+3x^2y+3xy^2+y^3
+\]
+
+Example: Consider the polynomial $(x+2)^{20}$ what is the coefficient on the term $x^{17}?$\\
+
+What happens if $x=y=1?$ Does this look familar? What if $x=1$ and $y=-1?$ What can you say alternating sums of binomial coefficients?\\[1 in]
+
+Questions on Chapter 5?
+\end{document}

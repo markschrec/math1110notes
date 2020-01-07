@@ -1,0 +1,121 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleleft}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+
+\begin{document}
+\section*{Permutations and Combinations}
+In this worksheet, we will deal with two common combinatorics problems which deal with choosing elements from a set. Recall from the last section the notation $n!=n\cdot (n-1)\cdot (n-2)\cdots 2\cdot 1$ and what this number represents.
+
+If there are 15 horses in the Kentucky Derby, in how many possible orders can they finish? (assuming no ties) \underline{\ \hspace*{1 in}\ }\\[.4 in]
+If a baseball team consists of 9 people playing 9 different positions, how many ways can the players be given positions? \underline{\ \hspace*{1 in}\ }\\[.4 in]
+Factorials are common enough that you should recognize the first couple terms of the sequence
+\[
+	0!=1 \quad 1!=1 \quad 2!=2 \quad 3!=6 \quad 4!=24 \quad 5!=120 \quad 6!=720\dots
+\]
+
+What if we don't want to order every object in a set, but just a few. Then we can still use the muliplication rule just like the last section. If there are 15 horses in the Kentucky Derby, how many different trifectas are there (top 3 horses in order)?
+\begin{itemize}
+	\item How many possibilites are there for the winner?
+	\item After the winner has been chosen, how many possibilites for second place?
+	\item After first and second, how many choices for third?
+\end{itemize}
+Since each step has the same number of possibilites we can use the multiplication principle.\\[.3 in]
+
+We can use the exact same idea for similar situations. Suppose a committee of 10 people needs to choose a President, Vice President, Secretary, and Treasurer. How many ways are there to do this? (Hint: Pick the President ``first'' and then pick the other members)\\[0.5 in]
+
+The previous examples had one very important thing in common, the order that we picked objects matters. In other words, if we pick $a$ and then $b$, it is different than if we pick $b$ then $a.$ We not only care about what objects we choose, but in what order we choose them.\\
+Now let's try to generalize. Suppose we have a set of $n$ distinct objects.
+\begin{enumerate}
+	\item How many ways are there to choose 1 object?
+	\item How many ways are there to choose 2 objects in order? 
+	\item How many ways are there to choose 3 objects in order?
+	\item What about 4?
+	\item What if you want to choose $r$ objects in order, where $r<n?$
+	\item Does your formula still work if $r=0$ or $r=n?$
+\end{enumerate}
+\pagebreak
+Because the previous situation is so common in math, it has a specific name.\\
+\defn{A Permutation of $n$ objects taken $r$ at a time} is an arrangement of $r$ of the $n$ objects in a specific order.\\
+
+What we have been doing is counting the number of permutations of $n$ objects taken $r$ at a time. So we define
+\begin{center}
+	$P(n,r)=$the number of permutations of $n$ objects taken $r$ at a time
+\end{center}
+What is your formula for $P(n,r)?$ $P(n,r)=$\underline{\ \hspace*{2 in} \ } (This is exactly your answer for \#5 from the previous page.)\\
+We can write the previous formula in a nice way using properties of factorials. Suppose $0\le k<n.$ Then we can write
+\[
+	n!=n\cdot (n-1)\cdots (k+1)\cdot k\cdot (k-1)\cdots 2\cdot 1=n(n-1)\dots(k+1)\cdot k!
+\]
+So we can write $\displaystyle \frac{n!}{k!}=n(n-1)\cdots(k+1).$
+Use this idea to rewrite your formula for $P(n,r)$ as a ratio of 2 factorials. (It will not just be $n!/r!$)\\[.2 in]
+
+
+	If we look at the formula for $P(n,r)=n(n-1)\cdots ((n-r)+1)$ then this looks just like the previous formula with $k=n-r.$ Thus we can write
+	\[
+		P(n,r)=\frac{n!}{(n-r)!}
+	\]
+Next we want to tackle a similar but slightly different question. So far, we have been picking objects in a certain order where that order mattered. What if we don't care about the order of the objects selected? In this case we are just picking a subset of some set of elements. This gives the following definition.
+
+\defn{A combination of $n$ objects taken $r$ at a time} is a selection of $r$ objects among the $n,$ with order disregarded. Equivalently, it is asubset of size $r$ from a set of size $n.$
+
+We also have similar notation as before where
+\begin{center}
+	$C(n,r)$=the number of combinations of $n$ objects taken $r$ at a time
+\end{center}
+
+Combinations also have the more common notation $C(n,r)=\binom{n}{r}$ which we will use throughout the semester. Our goal is to find a formula for $\binom{n}{r}$ similar to the one for $P(n,r).$ In fact, we will use the permutation ideas to think about combinations.
+
+Let's start with the set $S=\{a,b,c,d\}.$\\
+How many subsets of size 2 are there? List them.\\[.6 in]
+
+How many ways can you select 2 elments of $S$ if we keep track of order? List them as well.(A good way to denote this is just with a string of letters, for example $ab$ or $dc$)\\[.6 in]
+
+Let's try to make some sort of correspondence between these two ideas. For each permutation of size 2, we can form a combination of size 2 by simply ignoring the order. For example, suppose we have the permutation $ab$ meaning we chose $a$ then $b$ in that order. Then we can form the combination by ignoring order and getting the combination $\{a,b\}.$\\
+Does every combination get matched by some permutation?\\[.3 in]
+Is there some combination that gets matched by more than 1 permutation?\\[.3 in]
+\newpage
+Write all of the combinations again, and with each one, write the permutations that match up to it. How many permutations give each combination?\\[.8 in]
+
+
+In the previous question you found that each combination got matched to exactly $k$ permutations where $k$ is the number you determined. If you knew this ahead of time, how could you find $\binom{4}{2}$ from $P(4,2)$ and $k?$ Does this match your original answer?\\[.4 in]
+
+Let's do something similar when choosing 3 elements. List all combinations and permutations of $S$ choosing 3 elements. Remember, you should know how many permutations you will get. Pair each combination up with all the permutations that match to it. How many permutations match to each combination now. If we call that number $k,$ how can we find $\binom{4}{3}$ from $P(4,3)$ and $k.$\\[1.4 in]
+
+Now do the same thing for subsets with 4 elements. (You shouldn't have very many combinations) What is the value of $k$ in this example? Do you have a guess for what $k$ will be in general?\\[.4 in]
+
+Let's try to make this completely general now. Suppose we have a set with $n$ elements and we want to find how many subsets have size $r.$ First we will make all of the permutations with $r$ elements. How many of those are there?\\[.5 in]
+
+For each permutation, make a combination by ignoring order. How many permutations will give the same combination? This is finding the value of $k$ in the previous 3 examples. (Hint: In a permutation, the order of the $r$ elements matters, but it doesn't in a combination. How many ways can those $r$ elements be ordered?)\\[1 in]
+
+If we know that $P(n,r)$ counts each combination exactly $k$ times, where $k$ is the value you found before. Combine these two to get a formula for $\binom{n}{r}$ using the actual value of $k$ you found.\\[.3 in]
+
+If we use the alternative formula for $\binom{n}{r}$ then we get the following formula
+\[
+	\binom{n}{r}=
+\]
+\end{document}
+

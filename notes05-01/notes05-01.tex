@@ -1,0 +1,134 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleleft}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+
+\begin{document}
+\section{Section 5.1: Sets}
+A \defn{Set} is any collection of objects. The objects in the set are called \defn{Elements}. To define sets we will use curly braces.
+
+Examples:\\
+The set of all positive prime numbers less than 10: $P=\{2,3,5,7\}$\\
+The set of all NHL teams: $T=\{Penguins, Golden Knights, \dots, Capitals\}$ (Order doesn't matter)\\
+Set Builder notation:\\
+The graph of a function $y=f(x)$ is all ordered pairs $(x,y)$ such that $y=f(x)$: $G=\{(x,y)| f(x)=y\}$\\
+
+We will typically denote sets with capital letters. We also use the symbol $\in$ to denote when an object is an element of a set. For example\\
+\[
+	2\in P \qquad Redwings\in T \qquad (1,f(1))\in G
+\]
+
+
+Another notion for sets is the sub-set. We say $A$ is a subset of $B$ and write $A\subset B$ or $A\subseteq B$ if every element of $A$ is an element of $B.$
+Exampls:\\
+$\{2,3\}\subset P$\\
+$\{\text{NHL teams with multiple Stanley Cups}\}\subset T$\\
+$\{\text{female students in this class}\}\subset \{\text{all students in this class}\}$
+
+We say two sets are equal if they contain exactly the same elements. On common way to prove $A=B$ is to prove $A\subset B$ and $B\subset A.$
+
+Difference between $\in$ and $\subset$: If $A=\{1,2,3\}$ then we could say $1\in A$ or $\{1\}\subset A$ but we would not say $1\subset A.$\\
+We can also put a slash through either of these symbols to mean ``not''.
+
+What if a set has no elements? There is exactly one such set call the \defn{Empty Set} and it is denoted by either $\emptyset$ or $\{\}.$ (First one is better) Note that $\emptyset \subset A$ for any set $A.$
+
+Small group questions: find 2-3 others and discuss the following questions\\
+\begin{enumerate}
+	\item List all of the subsets of $\{2,3,5\}$
+	\item Is $A\subset A$ for any set
+	\item If $A\subset B$ and $B\subset C$ is it necessarily true that $A\subset C$
+	\item Is it possible to have $A\not\subset B$ and $B\not\subset A$
+	\item Is $0\in \emptyset$
+\end{enumerate}
+
+Building New Sets\\
+There are several ways we can get new sets from old sets. The two most common are \defn{Union} and \defn{Intersection}.\\
+
+Suppose $A$ and $B$ are sets then the Union of $A$ and $B,$ denoted as $A\cup B$ is the set of all elements contained in $A$ \underline{or} $B$ (or both).\\
+
+The intersection of $A$ and $B,$ denoted by $A\cap B$ is the set of all elements contained in $A$ \underline{and} $B.$\\
+
+Examples:\\
+Let $A=\{a,b,c,d\}$ and let $B=\{a,c,d,f,g\}$.\\
+To find $A\cup B$ we simply look for any element which is contained in either set. This gives $A\cup B=\{a,b,c,d,f,g\}.$\\
+On the other hand, to find the intersection, look at the elements which lie in both. $A\cap B=\{a,c,d\}.$
+
+Conceptual Questions:\\
+Let $A$ and $B$ be any sets.
+\begin{enumerate}
+	\item Is $A\cap B\subset A$ always
+	\item Is $A\cup B=B\cup A$ always
+	\item Is $A\cup B\subset A$ always
+	\item What is $A\cap \emptyset$
+	\item What is $A\cup \emptyset$
+\end{enumerate}
+
+One last way to work with sets. Suppose all of our sets (for now) are subsets of some ``Universal Set'' which we will call $U.$ Then for any set $A$ we can define the \defn{complement} of $A$ by $A'=\{x\in U|x\notin A\}.$ The key words for Union and Intersection were ``or'' and ``and'', the key word for complement is ``not''.
+
+Example:\\
+Let $U=\{1,2,\dots,10\}.$ If $A=\{1,3,5,7,9\}$ then $A'=\{2,4,6,8,10\}.$
+
+Note: The complement of a set depends heavily on the univerals set $U.$\\
+Let $A=\{1,2\}.$ Find $A'$ if
+\[
+	U=\{1,2,3\}\quad U=\{1,2,3,4,5\} \quad U=\{1,2,3,5,8,13\}
+\]
+
+Questions:\\
+\begin{enumerate}
+	\item What is $U'$
+	\item What is $A\cup A'$
+	\item What is $A\cap A'$
+\end{enumerate}
+
+Now consider the following table of weather data for Charlottesville.\\
+\begin{tabular}{l|r|r}
+	Month&Average High Temp. (\degree F)&Average Precip. (in.)\\\hline
+Jan&45&3.11\\\hline
+Feb&49&3.07\\\hline
+Mar&58&3.86\\\hline
+Apr&69&3.39\\\hline
+May&76&4.65\\\hline
+Jun&84&4.17\\\hline
+Jul&87&5.31\\\hline
+Aug&86&4.06\\\hline
+Sep&79&4.88\\\hline
+Oct&69&3.74\\\hline
+Nov&59&4.09\\\hline
+Dec&48&3.35\\\hline
+\end{tabular}\\
+Let $A=\{\text{months with more than 4 in. average rainfall}\}$ and let $B=\{\text{months with average temperature less than 60\degree}\}.$ Suppose $U$ is the set of all months. For each of the following sets, explicity list the elements, and give a sentence describing their real life meaning.
+\begin{itemize}
+	\item $A$
+	\item $B$
+	\item $A\cap B$
+	\item $A\cup B$
+	\item $A'$
+	\item $A'\cup B'$
+	\item $(A\cap B)'$
+\end{itemize}
+Leading into next section, do you notice anything about the last two? Is this a coincidence?
+\end{document}

@@ -1,0 +1,136 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 6.1/6.2: Experiments and Probability}
+An \defn{experiment} is an activity with some observable result. Each possible result is called an \defn{outcome} of the experiment. The set of all possible outcomes is called the \defn{sample space} and a subset of the sample space is called an \defn{event}. If $E$ is an event the we will say $E$ has \defn{occured} when the outcome lies in $E.$
+
+Examples:\\
+\begin{itemize}
+	\item roll a dice and record the number
+	\item measure how much rain falls on a given Wednesday
+	\item Ask a person what their favorite ice cream is
+\end{itemize}
+
+Let $S$ be the sample space. Then $S$ will play the role of $U$ for experiments. The set $S$ is sometimes called the \defn{certain event} since it will always happen. Similarly, the event $\emptyset$ is sometimes called the impossible event since it can never occur.
+
+Connections to set theory. If $E$ and $F$ are events in some experiment with sample space $S$ then we have the following
+\begin{itemize}
+	\item The event $E\cup F$ occurs exactly when $E$ or $F$ occurs
+	\item the event $E\cap F$ occurs exactly when $E$ and $F$ occur
+	\item The event $E'$ occurs exactly when $E$ does not occur
+\end{itemize}
+Two events $E$ and $F$ are mutually exclusive if $E\cap F=\emptyset.$\\
+
+Now we have a consistient language to talk about events we can talk about probability. A \defn{probability} is the measure of how likely something is to occur. 3 types of probabilities
+\begin{enumerate}
+	\item Logical probability-derived from mathematical reasoning, often counting techniques
+	\item Emperical probability-derived from experiments and testing
+	\item judgemental or subjective probability-based on individual's guess
+\end{enumerate}
+
+We will focus on the first two types and until otherwise noted we will restrict ourselves to experiments with only finitely many outcomes.\\
+
+Now suppose an experiment $S$ (we will denote an experiment by its sample space) has outcomes $s_1,s_2,\dots,s_N.$ Then to each outcome we will assign a number called the \defn{probability} of the outcome. Say we assign probability $p_1$ to outcome $s_1,$ probability $p_2$ to outcome $s_2$ and so forth. Then we need these probabilites to obey 2 rules
+\[
+	0\le p_i\le 1 \text{ for all i}\qquad p_1+p_2+\cdots +p_N=1
+\]
+The first says that the probability of any outcome is between 0 and 1 while the second says the probability of some event happening is 1. The pairs of the outcomes and their probabilites is called the \defn{probability distribution}. One common example is when all outcomes are equally likely. In this case $p_i=1/N$ for all $i.$
+
+Examples: Find the probability distributions for the following experiments\\
+\begin{enumerate}
+	\item Flip a coin and record heads or tails
+	\item Roll a fair die and record the number showing
+	\item Flip a coin twice and count how many heads occur
+\end{enumerate}
+
+In the previous examples, we could use reason about the physical situation to compute the distribution. But sometimes we need to use data to find the emperical probability.
+
+Example: A survey of 100 UVA students entering STEM fields found the following numbers entering each field are the following\\
+\begin{tabular}{lr}
+	Math&14\\
+	Physics&17\\
+	Mechanical Engineering&23\\
+	Electrical Engineering&19\\
+	Chemistry&9\\
+	Biology&8\\
+	Computer Science&10\\
+\end{tabular}
+Now consider the experiment where a random student from the sample is asked what field they are entering. Find the probability distribution of this experiment.\\
+
+To do this we simply take all of the possible outcomes, and see how many of each give an outcome. For instance, 14 students are going into math out of 100 so the probability is $14/100=0.14.$
+We can do the same for all of the other majors.
+
+We would like a way to compute the probability of more complicated events than just a single outcome. For this we can use the additive principle.\\
+
+For an event $E$ we will denote the the probability of $E$ occruing by $P(E).$ We say $E$ is an \defn{elementary event} if $E$ consists of a single outcome $s.$ In this case $P(E)$ is the probability of $s.$ If $E=\{s,t,u,\dots,z\}$ then $P(E)=P(s)+P(t)+P(u)+\dots +P(z).$
+
+It should be noted that if all outcomes have an equal probability, then the probability of an event $E$ is $n(E)/n(S).$ 
+
+Examples: Find the probability of the given event in the give experiment
+\begin{enumerate}
+	\item What is the probability that a dice roll give a number at most 2.
+	\item What is the probability that 3 coin flips show exactly one heads.
+	\item In the survey above, what is the probability a student went into engineering?
+\end{enumerate}
+
+There is also an inclusion-exclusion law for probability.  If $E$ and $F$ are events then 
+\[
+	P(E\cup F)=P(E)+P(F)-P(E\cap F)
+\]
+A notable special case. If $E$ and $F$ are mutually exclusive then $P(E\cup F)=P(E)+P(F).$
+
+Example: If you roll two fair dice, what is the probability that you roll at least a 10 or doubles.\\
+
+The outcomes that give at least a 10 are $(4,6), (5,5), (6,4), (5,6),(6,5),$ and $(6,6).$ So this has probability $6/36=1/6.$ There are 6 doubles so that also hase probability $1/6.$ There are two oucomes which give both so $P(E\cap F)=1/18.$ Thus $P(E\cup F)=1/6+1/6-1/18=5/18.$ Alternatively, you could just count directly.
+
+
+Odds: Sometimes probabilites are expressed in \defn{odds}. If the odds for an event are $a$ to $b$ then the event has probability $a/(a+b).$ If an event has probability $p$ then the odds for the event are $a$ to $b$ where $a/b=p/(1-p)$ and $a$ and $b$ share no common factor. If the odds for an event are $a$ to $b$ then the odds against an event are $b$ to $a.$
+
+Example:\\
+\begin{enumerate}
+	\item If a horse has 30:1 odds against winning a race, what is the probability the horse will win the race.
+	\item What are the odds for getting a 6 with a dice roll.
+	\item Would you play a game that costs \$1 with 1 to 4 odds where winning gives you \$100?
+\end{enumerate}
+
+
+\end{document}

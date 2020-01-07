@@ -1,0 +1,151 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 6.5: Tree Diagrams}
+
+A often times an experiment will have several stages, and some may be dependent on others. It can be helpful to have a way to represent these experiments visually in a way that lets us compute probabilites. To do this we will use tree diagrams. These consist of each step in the experiment, with lines inbetween showing the correct conditional probabilities. To find the final probabilites we can multiply along paths.
+
+Example: Suppose we have a red urn with 3 red balls and 2 green balls. We also have a green urn with 1 red ball and 3 green balls. Suppose an urn is chosen randomly and a ball is selected, then, without replacement, another ball is chosen from the urn with the same color as the first ball chosen. What is the probability the second ball is green.\\
+
+We start with the first step in the experiment of picking an urn at random. Then, for each of those choices, we see the probabilities of picking a red or green ball. The probabilities will vary depending on which urn we picked so the labels will be different. Then we fill in the last step of the table as well.
+\tikzstyle{level 1}=[level distance=3.5cm, sibling distance=4cm]
+\tikzstyle{level 2}=[level distance=3.5cm, sibling distance=2cm]
+\tikzstyle{level 3}=[level distance=3.5cm, sibling distance=1cm]
+
+% Define styles for bags and leafs
+\tikzstyle{bag} = [text width=4em, text centered]
+\tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+
+% The sloped option gives rotated edge labels. Personally
+% I find sloped labels a bit difficult to read. Remove the sloped options
+% to get horizontal labels. 
+\begin{tikzpicture}[grow=right]
+\node[bag] {Start}
+    child {
+        node[bag] {Red Urn}        
+            child {
+		    node[bag] {Red Ball}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{3}{5}\cdot\frac{1}{2}=\frac{3}{20}$}] {Red Ball}
+			edge from parent
+			node[below] {$\frac{1}{2}$}
+		}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{3}{5}\cdot\frac{1}{2}=\frac{3}{20}$}] {Green Ball}
+			edge from parent
+			node[above] {$\frac{1}{2}$}
+		}
+                edge from parent
+		node[above] {$\frac{3}{5}$}
+            }
+            child {
+		node[bag] {Green Ball}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{2}{5}\cdot\frac{1}{4}=\frac{1}{20}$}] {Red Ball}
+			edge from parent
+			node[below] {$\frac{1}{4}$}
+		}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{2}{5}\cdot\frac{3}{4}=\frac{3}{20}$}] {Green Ball}
+			edge from parent
+			node[above] {$\frac{3}{4}$}
+		}
+                edge from parent
+		node[above] {$\frac{2}{5}$}
+           }
+            edge from parent 
+	    node[above] {$\frac{1}{2}$}
+    }
+    child {
+        node[bag] {Green Urn}        
+         child {
+		    node[bag] {Red Ball}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{1}{4}\cdot\frac{3}{5}=\frac{3}{40}$}] {Red Ball}
+			edge from parent
+			node[below] {$\frac{3}{5}$}
+		}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{1}{4}\cdot\frac{2}{5}=\frac{1}{20}$}] {Green Ball}
+			edge from parent
+			node[above] {$\frac{2}{5}$}
+		}
+                edge from parent
+		node[above] {$\frac{1}{4}$}
+            }
+            child {
+		node[bag] {Green Ball}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{3}{4}\cdot\frac{1}{3}=\frac{1}{8}$}] {Red Ball}
+			edge from parent
+			node[below] {$\frac{1}{3}$}
+		}
+		child {
+			node[bag,label=right:{$\frac{1}{2}\cdot\frac{3}{4}\cdot\frac{2}{3}=\frac{1}{4}$}] {Green Ball}
+			edge from parent
+			node[above] {$\frac{2}{3}$}
+		}
+                edge from parent
+		node[above] {$\frac{3}{4}$}
+           }
+        edge from parent         
+	node[above] {$\frac{1}{2}$}
+    };
+\end{tikzpicture}
+
+Now we can simply add all of the probabilites that match events we want. If we want the second ball to be green we add the probabilites of all outcomes where the second ball is green thus we get $1/4+1/20+3/20+3/20=3/5.$
+
+Notice some features of the tree. The probability of each single event is the product of the path to it. Each branch has probabilites summing to 1. Also, if we add up to the probabilities for any leaves coming from a previous outcome, the sum is the same. Even better, if we want to answer another question with this set up there will be almost no work.
+
+Example: In the previous set up, what is the probability both balls are green. What is the probability the balls are different colors. Again,we simply read off the events which satisfy what we want and add probabilities.
+
+Example: 3 d4's are placed in a hat and 1 is picked randomly. The first die is fair, the second die will show 4 1/2 of the time (the rest are equally likely, and the last will show 4 1/10 of the time (the rest equally). A random die is picked an rolled. What is the probability the die was fair if the outcome was a 4?
+
+First of all, this is a conditional probability question. We want to know $P(\text{picked fair die}|\text{outcome was a 4}).$ So we need to compute $P(\text{picked a fair die and outcome was 4})$ as well as $P(\text{outcome was a 4}).$ We can do this with a tree diagram as well.
+
+Once again we draw the tree diagram. We can compute that the probability a fair die was picked and the outcome is a 4 is $1/12.$ On the other hand, the probability the outcome is a 4 is $1/12+1/6+1/30=17/60.$ Thus the probability that the dice was fair given that the outcome is a 4 is $5/17.$
+
+Try this with the monty hall problem.
+
+
+\end{document}

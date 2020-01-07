@@ -1,0 +1,153 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+\newcommand{\var}{\ensuremath{\mathrm{Var}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 8.3: Absorbing Stochastic matrices}
+
+In this section we study a class of stochastic matrices which are not regular, and perhaps are the opposite of regular. Consider the following stochastic matrix
+\[
+	A=\begin{bmatrix} 0.3&0.5&0\\0.4&0.4&0\\0.3&0.1&1\end{bmatrix}
+\]
+Suppose our experiment is in state 3. What is the probability it will stay in state 3? Now draw the transition diagram. Notice that once we end up in state 3 we can never leave. Such a state is called an \defn{absorbing state}.
+
+Absorbing states are pretty easy to identify. In the stochastic matrix, the absorbing states are the states such that $a_{ii}=1$ or alternatively, the columns where there is a 1 on the diagonal. In the transition matrix it is even easier to see, as they are the states where the only arrow out is to itself.
+
+This gives the following definition. An \defn{Absorbing stochastic matrix} is a stochastic matrix where
+\begin{enumerate}
+	\item There is at least 1 absorbing state
+	\item From any state it is possible to get to at least 1 absorbing state, possibly through other states.
+\end{enumerate}
+
+For example, consider the matrix
+\[
+	\begin{bmatrix}1&0&0\\0&0.4&0.7\\0&0.6&0.3\end{bmatrix}
+\]
+and it's associated transition diagram. We can see that state 1 is absorbing, but there is no way to get to state 1 from state 2 or 3, so this matrix is not an absorbing stochastic matrix. On the other hand, the matrix
+\[
+	\begin{bmatrix}1&0.3&0.2\\0&0.7&0.1\\0&0&0.7\end{bmatrix}
+\]
+is absorbing becuase every state can get to state 1, even though state 3 cannot do it directly.
+
+As in the last section we are interested in long term trends for these types of stochastic matrices, but our method is a little bit different. First of all, let's note that when making a stochastic matrix, the order of the state labels does not matter. So we can change the order to get a different matrix, but it still represents the same Markov process.
+
+When we have an absorbing stochastic matrix, we can always rearrange the states so that the absorbing states occur first. Consider the folloing example.\\
+\begin{tabular}{rrrrr}
+	&I&II&III&IV\\
+	I&.5&0&.1&0\\
+	II&.2&1&.2&0\\
+	III&.2&0&.4&0\\
+	IV&.1&0&.3&1
+\end{tabular}
+$\longrightarrow$
+\begin{tabular}{rrrrr}
+	&II&IV&I&III\\
+	II&1&0&.2&.2\\
+	IV&0&1&.1&.3\\
+	I&0&0&.5&.4\\
+	III&0&0&.2&.1
+\end{tabular}
+This is called the \defn{standard form} of the stochastic matrix.
+
+When we put an absorbing stochastic matrix in standard form, we will always get a matrix in the follwoing form
+\[
+	\left[\begin{array}{c|c}\text{Absorbing}&\text{Non-absorbing}\\I&S\\\hline 0&R\end{array}\right]
+\]
+Where $I$ is the identity matrix, $0$ is the matrix of all 0's, $R$ is a square matrix and $S$ is not necessarily square. You should use the transition diagram to compute the standard form of an absorbing stochastic matrix.
+
+When dealing with standard form, it is good to know that we can compute block matrix multiplication where we treat the blocks as entries.\\
+Example: Consider the absorbing stochastic matrix given below
+\[
+	A=\begin{bmatrix}1&0&1/4\\0&1&1/2\\0&0&1/4\end{bmatrix}
+\]
+Compute the first 3 powers of $A$ using the block matrix form.
+
+We can write $A$ as the block matrix
+\[
+	\left[ \begin{array}{c|c}I&S\\\hline0&R\end{array}\right]
+\]
+Where
+\[
+	S=\begin{bmatrix}1/4\\1/2\end{bmatrix}\qquad \text{and}\qquad R=\left[1/4\right]
+\]
+Then if we multiply block diagonal matrices we get
+\[
+	A^2=\left[ \begin{array}{c|c}I&S\\\hline0&R\end{array}\right]\left[ \begin{array}{c|c}I&S\\\hline0&R\end{array}\right]=\left[ \begin{array}{c|c}I&S+SR\\\hline0&R^2\end{array}\right]
+\]
+Where all products are matrix products. This gives us
+\[
+	A^2=\begin{bmatrix}1&0&5/16\\0&1&10/16\\0&0&1/16\end{bmatrix}\qquad A^3=\begin{bmatrix}1&0&21/64\\0&1&42/64\\0&0&1/64\end{bmatrix}
+\]	
+
+Now let's think about the long term trends in an absorbing stochastic matrix. If there are states which can't be left, and each state can get to one of these, what do you think will happen? It seems like eventually everything will get stuck in an absorbing state at some point. This is the case and we can be a little bit more precise.
+
+If $A$ is an absorbing stochastic matrix in standard form then we have 
+\[
+	A=\left[\begin{array}{c|c}  I&S\\\hline 0&R\end{array}\right]\text{ then the stable matrix of A is } \left[\begin{array}{c|c}  I&S(I-R)^{-1}\\\hline 0&0\end{array}\right]
+\]
+Where the identity matrix is the appropriate size. This means that the matrices $A^n$ get close to this matrix on the right. 
+
+Example: Find the stable matrix of $A$ as before.\\
+
+It was a 3x3 matrix with a 2x2 identity block. $R=[1/4]$ and $S=[1/4 1/2].$ Thus we get
+\[
+	S(I-R)^{-1}=\begin{bmatrix}1/4\\1/2\end{bmatrix}\left[1-1/4\right]^{-1}=\begin{bmatrix}1/3\\2/3\end{bmatrix}
+\]
+And thus the stable matrix of $A$ is the matrix
+\[
+	B=\begin{bmatrix}1&0&1/3\\0&1&2/3\\0&0&0\end{bmatrix}
+\]
+
+This also means that for any starting distribution $X_0$ the generations $X_1,X_2,\dots$ will approach $BX_0.$ Please note that this does depend on the starting distribution now, so this is only \emph{a} stable distribution.
+
+An easy result that comes from this is the following: If $A$ is an absorbing stochastic matrix with exactly 1 absorbing state, then its stable matrix is the matrix with 1's across the top row.
+
+
+
+Let's do one more example. Let $A$ be the absorbing stochastic matrix
+\[
+	\begin{bmatrix}1&0&1/4&1/6\\0&1&1/6&0\\0&0&1/4&1/2\\0&0&1/3&1/3\end{bmatrix}
+\]
+Find the stable matrix of $A.$ Suppose the initial distribution is $X=[0, 0, 1/2, 1/2].$ Find the long term distribution.
+\Large Work this out on my own before hand
+
+\end{document}

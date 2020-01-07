@@ -1,0 +1,69 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{More Review/Random Variable Intro}
+We are going to spend the day doing more probability questions (and so more counting questions) but with some added notation we will use later.
+
+Example: Suppose we flip a coin 6 times. Let $X$ be the number of heads that occurs. Find the probability we get exactly 2 heads. We can use the notation $P(X=2).$ Similarly, find $P(X=3).$ Now make a table showing all the possible values of $X$ and the corresponding probabilities.
+
+This type of notation is what we will call a Random variable. It is a convinence that we will use for experiments with some sort of numerical outcome. On of the best uses is that we can treat $X$ algebraically. So we will ask questions like $P(X\ge 1)$ or $P((X-3)=0)$ both of which we can answer.\\
+
+Example: A basketball player shoots freethrows with a percentage of 80\%. They shoot until they miss or make 5. Let $X$ be the number of shots they made. Find $P(X=2).$ Find $P(X=5).$ Make a table showing all possible values of $X$ and $P(X=k)$ for each one of them.\\
+
+The data in this table is called a probability distribution. It encapsulates all outcomes of an experiment and their probabilities. Then finding the probability of more complicated outcomes is just adding table values. For example $P(X\ge 3)=P(X=3)+P(X=4)+P(X=5).$\\
+
+Here is another situation where this idea can be very convinent to use.\\
+
+Example: Suppose we roll 2 fair 6 sided dice. Let $X$ be the outcome of the first and $Y$ be the outcome of the second. Find
+\begin{itemize}
+	\item $P(X=4)$
+	\item $P(X>Y)$
+	\item $P(X+Y=5)$
+	\item $P(X=Y)$
+\end{itemize}
+And describe each of these in words.\\
+
+
+Answer more review questions if we have time.
+
+\end{document}

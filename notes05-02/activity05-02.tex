@@ -1,0 +1,68 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleleft}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+
+\begin{document}
+\section*{Inclusion-Exclusion Worksheet}
+Consider the following universal set of some common male names:
+\[
+	U=\{\text{Tim, Andrew, Cody, Mark, Jim, Caleb, Matt, Anthony, Chris}\}
+\]
+Now consider the following sets:
+\[
+	A=\{\text{names with 3 letters}\}\quad B=\{\text{names with 4 letters}\} \quad C=\{\text{names starting with M}\} \quad D=\{\text{names starting with A}\}
+\]
+
+Explicity list the elements in each set and list their size:\\[.8 in]
+
+Describe the set $A\cup B$ in words and then explicity list its elements and size. Do you notice any connections?\\[.8 in]
+
+Do the same for $C\cup D$. Based on this can you make a guess for the formula for $n(S\cup T)?$\\[.8 in]
+
+Now consider the following two sets:
+\[
+	E=\{\text{names that end in y}\}\quad F=\{\text{names that start with C}\}
+\]
+List the elements for $E,F$ and $E\cup F.$ Does your formula still work?\\
+If not, can you see any difference between this case and the first 2?\\[.4 in]
+
+Look at two more sets
+\[
+	G=\{\text{names with less than 6 letters}\}\quad H=\{\text{names with more than 4 letters}\}
+\]
+Without listing any elements at all, what is $n(G\cup H).$ (Are any names in $U$ excluded)\\
+Does your formula work in this case?\\[.2 in]
+
+In the previous two cases, are there any elements which lie in both sets? How many? How do we represent this with our set notation? Is there any way you can incoporate this number to correct your previous formula?\\[.5 in]
+
+Now give a final guess for the formula for $n(S\cup T)$
+\[
+	n(S\cup T)=\underline{\ \hspace{4 in}\ }
+\]
+
+
+\end{document}

@@ -1,0 +1,96 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 6.6: Bayes' Theorem}
+
+Let's examine another urn problem. Suppose we have two urns, green and white. The white urn has 3 white balls and 2 green balls. The green urn has 1 white ball and 3 green balls. Suppose we pick a ball from the green urn, then pick a ball from the urn with the same color. Let's look at the following probability questions
+\[
+	P(\text{second ball is white}|\text{first ball is green})=\frac{1}{3} \qquad P(\text{first ball is green}|\text{second ball is white})=\frac{1/4}{1/4+1/10}
+\]
+We can draw our tree diagram and compute these probabilities. For the first one we get pretty simply that the probability is 1/3 which we can read almost directly off the tree. Notice that in this case we are working in ``order'' of the tree so things fall nicely. On the other hand, the second example is more complicated to compute. We have to work against the tree so we end up adding probabilites of multiple things. It would be nice to be able to do all probabilites the first way.
+
+Let's take a closer look at how we do the second example
+\begin{align*}
+	P(\text{first green}|\text{second white})&=\frac{P(\text{first green and second white})}{P(\text{second white})}\\
+						 &=\frac{P(\text{first green})P(\text{second white}|\text{first green})}{P(\text{first green})P(\text{second white}|\text{first green})+P(\text{first white})P(\text{second white}|\text{first white})}
+\end{align*}
+
+Take a closer look in the numerator and denominator. In the numerator we have used the product rule for intersections, but switched the order. Now the top goes in the ``correct order'' for the problem.
+
+Now look at the denominator. If we want to know the probability the second ball is white, there are two options for the first ball, either white or green. These are disjoint, so we can add our probabilities together which gives the formula we had on the previous line. Notice that every probability in this final equation can be read directly from the problem with no addition or other rules. 
+
+This is the result known as Bayes' theorem.
+Suppose $B_1$ and $B_2$ are mutually exclusive events such that $B_1\cup B_2=S.$ Then we have
+\[
+	P(B_1|A)=\frac{P(B_1)P(A|B_1)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_1)}
+\]
+
+This seems complicated but it is just the same as our first example. You should think about $B_1$ and $B_2$ as the ``first'' thing that can happen, while $A$ is the second. We write $P(B_1|A)$ in terms of probabilites that go in the ``correct'' order.
+
+Example: It is estimated that approximately 10\% of olympic athletes use some sort of performance enhancing drugs. If a person uses PED's then the tests will detect this 93\% of the time. If the person does not use PED's then the test will yield a false postitive 2\% of the time. If an athlete tests positive for PED's, what is the probability they actually used them.
+
+Let's put this into mathematical language. We want $P(\text{use PED's}|\text{test positive}).$ Again, this probability is backwards. If it were the other order we could just read the probability from the question. So we can use Bayes' theorem to calculate this probability in a simpler way.
+
+Here the even $A$ is a positive test. The event $B_1$ is use PED's and the event $B_2$ is don't use PED's. Notice that $B_1$ and $B_2$ are mutually exclusive and their union is th whole sample space. In this case we get
+\begin{align*}
+	P(\text{use PED's}|\text{test positive})&=\frac{P(\text{use PED's})P(\text{test positive}|\text{use PED's})}{P(\text{use PED's})P(\text{test positive}|\text{use PED's})+P(\text{don't use PED's})P(\text{test positive}|\text{don't use PED's})}\\
+						&=\frac{0.1\cdot 0.93}{0.1\cdot 0.93+0.9\cdot 0.02}\\
+						&=0.8379
+\end{align*}
+
+Again note how easy each of these probabilities was to calculate. It was basically given to us in the problem so we didn't have any trouble at all. 
+
+So far we have only had two possibilites for the ``first'' event, but this doesn't have to be the case. Now we give the full statement of Bayes' theorem.
+
+Suppose $B_1,B_2,\dots,B_n$ are pairwise mutually exclusive events such that $S=B_1\cup B_2\cup \cdots \cup B_n.$ If $A$ is any event in $S$ such that $P(A)\neq 0$ then
+\begin{align*}
+	P(B_1|A)&=\frac{P(B_1)P(A|B_1)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+\cdots + P(B_n)P(A|B_n)}\\
+	P(B_2|A)&=\frac{P(B_2)P(A|B_2)}{P(B_1)P(A|B_1)+P(B_2)P(A|B_2)+\cdots + P(B_n)P(A|B_n)}\\
+\end{align*}
+and so forth. 
+
+As before, we think of the $B_i$ as the first thing that could happen, and $A$ is the second. 
+
+Do problem 9 from the section. The answers are (a) 0.1325 and (b)$12/53\approx 0.23$
+
+\end{document}

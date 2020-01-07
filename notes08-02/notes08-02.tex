@@ -1,0 +1,114 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+\newcommand{\var}{\ensuremath{\mathrm{Var}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Section 8.2: Regular Stochastic Matrices}
+
+Example: You have a trip planned with lots of connecting flights. For each flight, it can be either early, on time, or delayed which only depends on the previous flight. If a flight is early then the next flight will be early, on time or delayed with proportions 0.3, 0.5, 0.2 respectively.  If it is on time then the next flight will have probabilities 0.2 0.4 0.4 and if it is delayed then the next flight will have probabilities 0 0.2 0.8. Draw the transition diagram. Find the transition matrix for this Markov process. If the initial flight is equally likely to be early, on time, or delayed, find the distributions for the next 2 generations. If you know your first flight is delayed, find the probability your third flight is early, on time, or delayed.
+
+We want to do more than just computations for Markov processes. We want to be predictive and look at long term trends. Let's revisit the library example again.
+
+Example: A local library is looking at its membership. It figures that if someone is a member there is an 80\% chance they will renew their membership in the followin year and a 20\% chance they will not. They also assume that if someone is not a member then there is a 10\% chance they will join next year. Write down the transition matrix for this Markof process.\\
+
+Suppose initially that half of the population is a library member. Compute what proportion of the population will be library members after years 1 through 5. We have $X=[0.5 0.5]$ and so we get
+\[
+	AX=\begin{bmatrix}
+		0.45\\
+		0.55\\
+	\end{bmatrix}
+	\quad
+	A^2X=\begin{bmatrix}
+		0.415\\
+		0.585\\
+	\end{bmatrix}
+	A^3X=\begin{bmatrix}
+		0.3905\\
+		0.6095\\
+	\end{bmatrix}
+	\quad
+	A^4X=\begin{bmatrix}
+		0.373\\
+		0.627\\
+	\end{bmatrix}
+	\quad
+	A^5X=\begin{bmatrix}
+		0.361\\
+		0.639\\
+	\end{bmatrix}
+\]
+It looks like these numbers might be approaching something and if we look at a higher value we get $A^{20}X=[0.3334,0.6666]$ so it looks like we will stabilize around 1/3 and 2/3. 
+
+In fact, if we check the math again the matrices $A^n$ look to be approaching the matrix with 1/3 along the top and 2/3 along the bottom. Now what if we started with a different distribution. Then we can check that
+\[
+	A^n\begin{bmatrix}m_0\\1-m_0\end{bmatrix}\approx \begin{bmatrix}1/3 & 1/3\\2/3&2/3\end{bmatrix}\begin{bmatrix}m_0\\1-m_0\end{bmatrix}=\begin{bmatrix}1/3 \\ 2/3 \end{bmatrix}
+\]
+So it doesn't matter what our initial distribution is. 
+
+This is the type of behavior we want to analyze. When the matrices $A^n$ get close to a matrix $B$ it is called the stable matrix of $A.$ In this case the distributions $A^nX$ will also get close to a single distribution called the stable distribution of $A.$ Will these things always exist.
+
+Example: Consider the following stochastic matrix and distribution matrix.
+\[
+	A=\begin{bmatrix}0&1&0\\0&0&1\\1&0&0\end{bmatrix} \qquad X=\begin{bmatrix}1\\0\\0\end{bmatrix}
+\]
+Compute the first few powers of $A$ and multiply by $X$ for each. Do you think this $A$ has a stable matrix or stable distribution?
+
+There is a relatively simple condition to ensure that we do in fact have a stable matrix and stable distribution. We say that a stochastic matrix is \defn{regular} if some power has all positive entries.
+
+Example: Check if the following matricies are regular
+\[
+	\begin{bmatrix}0&1\\1&0\end{bmatrix}\quad\begin{bmatrix}0.3&0.1\\0.7&0.9\end{bmatrix}\quad\begin{bmatrix}0&0.5\\1&0.5\end{bmatrix}
+\]
+
+If $A$ is a regular stochastic matrix then we have the following properties:
+\begin{enumerate}
+	\item The powers $A^n$ approach a single matrix which is the stable matrix of $A.$
+	\item For any distribution $X$ the distributions $A^nX$ approach a single distribution called the stable distribution of $A.$
+	\item All colunms of the stable matrix are the same and they are equal to the stable distribution.
+	\item The stable distribution (and thus matrix) can be solved by the system $AX=X$ with the condition that $X$ is a distribution.
+\end{enumerate}
+
+Example: Suppose that 60\% of subaru owners will buy a subaru for their next car, and 90\% of other car brand owners will still not buy a subaru for their next car. Predict the long term trend in what percentage of people will own a subaru.
+
+Example: Question 16. Do full Markov analysis on it.
+
+\end{document}

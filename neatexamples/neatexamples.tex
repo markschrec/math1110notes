@@ -1,0 +1,60 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\renewcommand{\wedge}[1]{\ensuremath{\langle #1 \rangle}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Neat Examples}
+Example: Non-Transitive Dice\\
+Suppose we have 3 dice, A,B,C. Each has 6 sides.
+\begin{enumerate}
+	\item Dice A has 2,2,4,4,9,9
+	\item Dice B has 1,1,6,6,8,8
+	\item Dice C has 3,3,5,5,7,7
+\end{enumerate}
+Find the probability dice A beats dice B. Find the probability dice A beats dice C. Find the probability dice B beats dice C.
+
+
+Example: Simpson's paradox\\
+The Medical and law grad programs collected the following data on male and female admissions. In the law school 560 out of 700 men we accepted and 340 out of 400 women were accepted. In the medical grad program 40 out of 300 men were accepted and 160 out of 600 women were accepted. Compare the probabilites of men vs women being accepted in the law and medical schools. Now compare over both grad programs. What do you notice?
+
+Example: Bertrand's Box\\
+Suppose you have 3 identical boxes with two compartments each. One box has a silver bar in each compartment, one has a gold bar in each compartment, and one has one of each. If you open one compartment at random and find a gold bar, what is the probability that the bar in the other compartment of the same box is gold as well.
+\end{document}

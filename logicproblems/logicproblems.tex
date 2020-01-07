@@ -1,0 +1,76 @@
+\documentclass[14,fleqn]{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[top=.5 in,left=.5 in,right=.5 in,bottom=.5 in]{geometry}
+\usepackage{enumerate}
+\usepackage{ mathrsfs }
+\usepackage{graphicx}
+\usepackage{pgf,tikz}
+\usepackage{mathrsfs}
+\usepackage{gensymb}
+\usepackage{venndiagram}
+\usepackage{enumitem}
+\usetikzlibrary{arrows}
+
+\pagenumbering{gobble}
+
+\setlength{\parindent}{0 pt}
+\setlength{\parskip}{1 ex}
+
+\newcommand{\lcm}{\textnormal{lcm}}
+\newcommand{\norm}{\triangleabove right}
+\newcommand{\bfm}[1]{$\boldsymbol{#1}$}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\infsum}[1]{\ensuremath{\sum_{n=#1}^\infty}}
+\newcommand{\defn}[1]{\textbf{\underline{#1}}}
+\newcommand{\var}{\ensuremath{\mathrm{Var}}}
+
+
+%\begin{venndiagram3sets}[labelA=$S$,labelB=$T$,labelC=$U$]
+%	\fillA
+%	\fillOnlyC
+%\end{venndiagram3sets}\\
+
+%\begin{venndiagram2sets}[labelA=$S$,labelB=$T$]
+%	\fillNotA
+%	\fillNotB
+%	\setpostvennhook{
+%		\draw[] (labelAB) ++(0,-2.1) node {\raisebox{0pt}[0pt][0pt]{$(S\cap T)'$}};
+%	}
+%\end{venndiagram2sets}\\
+
+\begin{document}
+\section{Logic Problems:}
+
+Find truth tables for the following statement forms:
+\begin{enumerate}
+	\item $((p\to q)\wedge (q\to r))\to (p\to r)$
+	\item $(p\vee q)\wedge (p\vee r)$
+	\item $p\vee (q\wedge r)$
+	\item $p\oplus q \oplus r$
+	\item $(p\to q)\vee (q\to p)$
+	\item $(p\leftrightarrow q)\leftrightarrow (\sim (p\oplus q))$
+\end{enumerate}
+
+Prove the following logical equivalences and logical implications:
+\begin{enumerate}
+	\item $\sim (P\vee Q)\Leftrightarrow \sim P\wedge \sim Q$
+	\item $(P\to Q)\Leftrightarrow [(P\wedge \sim Q)\to c]$
+	\item $(p\wedge q)\Rightarrow p$
+	\item $[(p\to q)\wedge (r\to s)]\Rightarrow [(p\wedge r)\to (q\wedge s)]$
+	\item $p\wedge (p\to q) \Rightarrow q$
+	\item $(p\vee q)\wedge \sim p \Rightarrow q$
+\end{enumerate}
+
+Determine if the following arguments are valid or not:
+\begin{enumerate}
+	\item Robin is a school teacher. If someone is a school teacher, then they have weekends off. Therefore, Robin has weekends off.
+	\item When Jeff visits family, he goes to Pennsylvania. Jeff is in Pennsylvania. Therefore, Jeff is visiting family.
+	\item If a bacteria is present, a rash and fever are present. A fever is present. A rash is not present. Therefore, the bacteria is not present.
+	\item A crime is serious if both television and paper report on it. If there is a robbery, the television reports on it. If there is a car chace, the paper reports it. There is a crime of robbery followed by a car chase. Then the crime is serious.
+
+\end{enumerate}
+
+\end{document}
